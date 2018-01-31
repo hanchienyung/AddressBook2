@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/process}"
+      th:object="${addressbook}"
+      method="post">
+      <input type="hidden" th:field="*{id}" />
+
+      FirstName :<input type="text" th:field="*{firstName}" />
+      <span th:if="${#fields.hasErrors('firstName')}"
+            th:errors="*{firstName}"></span><br />
+
+      LastName :<input type="text" th:field="*{lastName}" />
+      <span th:if="${#fields.hasErrors('lastName')}"
+            th:errors="*{lasttName}"></span><br />
+
+      Address :<textarea rows="3" th:field="*{address}" />
+      <span th:if="${#fields.hasErrors('address')}"
+            th:errors="*{address}"></span><br />
+
+      Phone :<input type="text" th:field="*{phone}" />
+      <span th:if="${#fields.hasErrors('phone')}"
+            th:errors="*{phone}"></span><br />
+
+      Email :<input type="text" th:field="*{email}" />
+      <span th:if="${#fields.hasErrors('email')}"
+            th:errors="*{email}"></span><br />
+
+      <br />
+      <input type="submit" value="Submit" />
+</form>
+</body>
+</html>
