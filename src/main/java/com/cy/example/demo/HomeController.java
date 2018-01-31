@@ -43,6 +43,23 @@ public class HomeController {
         return "show";
     }
 
+
+    @GetMapping("/search")
+    public String getSearchInput(Model model){
+        return "searchform";
+    }
+
+    @PostMapping("/search")
+    public String showSearchOutput(@PathVariable ("lastName") String lastName,
+                                   Model model){
+        return "list";
+    }
+
+    @RequestMapping("/search")
+    public String searchAddressBook(Model model){
+        return "searchform";
+    }
+
     @RequestMapping("/update/{id}")
     public String updateAddressBook(@PathVariable("id") long id, Model model) {
         model.addAttribute("addressbook", addressbookRepository.findOne(id));
