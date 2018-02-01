@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -44,16 +46,26 @@ public class HomeController {
     }
 
 
-    @GetMapping("/search")
+    /*@GetMapping("/search")
     public String getSearchInput(Model model){
         return "searchform";
-    }
+    }*/
 
     @PostMapping("/search")
-    public String showSearchOutput(@PathVariable ("lastName") String lastName,
-                                   Model model){
+    public String showSearchOutput(HttpServletRequest request, Model model){
+        String searchString = request.getParameter("lastName");
+        System.out.println("searchString is " + searchString);
+        model.addAttribute("lastName",searchString);
+        model.addAttribute("addressbooks", addressbookRepository.findByLastNameIgnoreCase(searchString));
+        List <AddressBook2> l = addressbookRepository.findByLastNameIgnoreCase()  findByLastNameIgnoreCase(searchString);
+        System.out.println(l.size());
+        for (AddressBook2 a:  l){
+            System.out.println(a.getLastName());
+        }
+
         return "list";
-    }
+     }
+
 
     @RequestMapping("/search")
     public String searchAddressBook(Model model){

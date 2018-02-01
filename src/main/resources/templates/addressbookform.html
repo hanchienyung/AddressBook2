@@ -17,7 +17,7 @@
 
       LastName :<input type="text" th:field="*{lastName}" />
       <span th:if="${#fields.hasErrors('lastName')}"
-            th:errors="*{lasttName}"></span><br />
+            th:errors="*{lastName}"></span><br />
 
       Address :<textarea rows="3" th:field="*{address}" />
       <span th:if="${#fields.hasErrors('address')}"
